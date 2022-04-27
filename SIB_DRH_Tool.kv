@@ -1,8 +1,10 @@
-#: kivy 1.9
+#: kivy 2.1.0
 #: import ScreenManager kivy.uix.screenmanager.ScreenManager
 #: import Screen kivy.uix.screenmanager.ScreenManager
 #: import NewGameScreen screen
 #: import LoadGameScreen screen
+#: import GererLesListes screen
+#: import MDTopAppBar kivymd.uix.toolbar
 
 ScreenManager:
     name: "manager"
@@ -11,122 +13,32 @@ ScreenManager:
     #transition: FadeTransition()
     GererLesListes:
         id: Gerer_screen
-        name: 'GererScreen'
+        name: 'GererLesListes'
         manager: 'screen_manager'
-    NewGameScreen:
-        id: newgame_screen
-        name: 'NewGameScreen'
+    ImprimerDesFiches:
+        id: imprimer_screen
+        name: 'ImprimerDesFiches'
         manager: 'screen_manager'
-    # LoadGameScreen: 
-        # id: loadgame_screen
-        # name: 'LoadGameScreen'
-        # manager: 'screen_manager'
-
 <GererLesListes>:
-    MDBottomNavigation:
-        # Color stuff
-        MDBottomNavigationItem:
-            name:"screen 1"
-            text:"Gérer les listes"
-            icon:""
-            MDLabel:
-                text:"Python"
-                halign:"center"
-        MDBottomNavigationItem:
-            name:"screen 2"
-            text:"Imprimer des fiches"
-            icon:""
-            on_tab_release: app.root.current = "LoadGameScreen"
-<NewGameScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        BoxLayout:
-            orientation: 'vertical'
-            Label:
-                text: 'Game Length in Days'
-                font_size: 30
-            BoxLayout:
-                orientation: 'horizontal'
-                ToggleButton:
-                    text: '100'
-                    state: 'down'
-                    group: 'newgame_days'
-                    font_size: 30
-                ToggleButton:
-                    text: '200'
-                    group: 'newgame_days'
-                    font_size: 30
-            BoxLayout:
-                orientation: 'horizontal'
-                ToggleButton:
-                    text: '365'
-                    group: 'newgame_days'
-                    font_size: 30
-                ToggleButton:
-                    text: '3650'
-                    group: 'newgame_days'
-                    font_size: 30
-            ToggleButton:
-                text: 'Unlimited'
-                group: 'newgame_days'
-                font_size: 30
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: (1, .5)
-            Label:
-                text: 'Difficulty (Score Multiplier)'
-                font_size: 30
-            BoxLayout:
-                orientation: 'horizontal'
-                ToggleButton:
-                    text: 'Easy (x1)'
-                    state: 'down'
-                    group: 'newgame_difficulty'
-                    font_size: 30
-                ToggleButton:
-                    text: 'Medium (x2.5)'
-                    group: 'newgame_difficulty'
-                    font_size: 30
-                ToggleButton:
-                    text: 'Hard (x5)'
-                    group: 'newgame_difficulty'
-                    font_size: 30
-<LoadGameScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: 'load a game'
-            font_size: 30
-        Widget:
-            canvas:
-                Ellipse:
-                    pos: self.pos
-                    size: self.size
-        BoxLayout:
-            Button:
-                text: 'Menu'
-                font_size: 30
-                on_release: app.root.current = 'menu'
-            Button:
-                text: 'text'
-                font_size: 30
-
-# #:kivy 2.1.0
-# BoxLayout:
-#     orientation:"vertical"
-#     MDBottomNavigation:
-#         # Color stuff
-#         MDBottomNavigationItem:
-#             name:"screen 1"
-#             text:"Gérer les listes"
-#             icon:""
-#             MDLabel:
-#                 text:"Python"
-#                 halign:"center"
-#         MDBottomNavigationItem:
-#             name:"screen 2"
-#             text:"Imprimer des fiches"
-#             icon:""
-#             MDLabel:
-#                 text:"Python"
-#                 halign:"center"
+    MDIconButton:
+        name:"screen 1"
+        text:"Gérer les listes"
+        icon:"database"
+        pos_hint: {'center_x': 0.2,'center_y': 0.1}
+    MDIconButton:
+        name:"screen 2"
+        text:"Imprimer des fiches"
+        icon:"printer-search"
+        pos_hint: {'center_x': 0.8,'center_y': 0.1}
+<ImprimerDesFiches>:
+    MDIconButton:
+        name:"screen 1"
+        text:"Gérer les listes"
+        icon:"database"
+        pos_hint: {'center_x': 0.2,'center_y': 0.1}
+        on_press: app.root.current = "GererLesListes"
+    MDIconButton:
+        name:"screen 2"
+        text:"Imprimer des fiches"
+        icon:"printer-search"
+        pos_hint: {'center_x': 0.8,'center_y': 0.1}
