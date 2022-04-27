@@ -5,38 +5,39 @@
 #: import LoadGameScreen screen
 
 ScreenManager:
-    name: "manager"
-    current:
     id: screen_manager
     #transition: FadeTransition()
-    GererLesListes:
-        id: Gerer_screen
-        name: 'GererScreen'
+    MenuScreen:
+        id: menu_screen
+        name: 'MenuScreen'
         manager: 'screen_manager'
     NewGameScreen:
         id: newgame_screen
         name: 'NewGameScreen'
         manager: 'screen_manager'
-    # LoadGameScreen: 
-        # id: loadgame_screen
-        # name: 'LoadGameScreen'
-        # manager: 'screen_manager'
+    LoadGameScreen: 
+        id: loadgame_screen
+        name: 'LoadGameScreen'
+        manager: 'screen_manager'
 
-<GererLesListes>:
-    MDBottomNavigation:
-        # Color stuff
-        MDBottomNavigationItem:
-            name:"screen 1"
-            text:"Gérer les listes"
-            icon:""
-            MDLabel:
-                text:"Python"
-                halign:"center"
-        MDBottomNavigationItem:
-            name:"screen 2"
-            text:"Imprimer des fiches"
-            icon:""
-            on_tab_release: app.root.current = "LoadGameScreen"
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'ASCII Life'
+            font_size: 50
+        Button:
+            text: 'New Game'
+            font_size: 30
+            on_release: app.root.current = 'newgame'
+        Button:
+            text: 'Load Game'
+            font_size: 30
+            on_release: app.root.current = 'LoadGameScreen'
+        Button:
+            text: 'Settings'
+            font_size: 30
+            on_release: app.root.current = 'something'
 <NewGameScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -110,23 +111,3 @@ ScreenManager:
             Button:
                 text: 'text'
                 font_size: 30
-
-# #:kivy 2.1.0
-# BoxLayout:
-#     orientation:"vertical"
-#     MDBottomNavigation:
-#         # Color stuff
-#         MDBottomNavigationItem:
-#             name:"screen 1"
-#             text:"Gérer les listes"
-#             icon:""
-#             MDLabel:
-#                 text:"Python"
-#                 halign:"center"
-#         MDBottomNavigationItem:
-#             name:"screen 2"
-#             text:"Imprimer des fiches"
-#             icon:""
-#             MDLabel:
-#                 text:"Python"
-#                 halign:"center"
